@@ -1,0 +1,243 @@
+\documentclass[10pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{xfrac}
+\usepackage{hyperref}
+\usepackage{unicode-math}
+
+\newcommand{\cat}[1]{\bm{ \mathsf{#1} }}
+\newcommand{\functor}[3]{#1 : \cat{#2} \to \cat{#3}}
+\newcommand{\functordef}{\functor{F}{C}{D}}
+\newcommand{\cc}{\cat{C}}
+\newcommand{\dd}{\cat{D}}
+\newcommand{\ee}{\cat{E}}
+\newcommand{\subcat}[2]{\bm{ \mathsf{#1}}_{\bm{ \mathsf{#2}}}}
+\newcommand{\op}[1]{#1^{\text{op}}}
+\newcommand{\opc}{\op{\cc}}
+\newcommand{\opd}{\op{\dd}}
+\newcommand{\ope}{\op{\ee}}
+\newcommand{\mono}{\rightarrowtail}
+\newcommand{\epi}{\twoheadrightarrow}
+\newcommand{\one}{\mathbb{1}}
+%SetFonts
+
+%SetFonts
+
+
+\title{Categories in Context - Ch. 1 Solutions}
+
+\author{NYC Categories Theory Meetup}
+
+\begin{document}
+\maketitle
+
+\section{Categories, Functors, Natural Transformations}
+
+This chapter describes the fundamental data associated with categorical structure and its structure-preserving maps called \textbf{Functors}. Additionally, we learn about the maps between functors, \textbf{Natural Transformations}, and their coherence data. Other topics include sizing constraints, additional structure of morphisms within a category, and begin to understand arguments from duality and via the art of the diagram chase.
+
+\subsection{Abstract + Concrete Categories}
+
+In this section, we discuss the data associated with categories. 
+
+\subsubsection{}
+
+\begin{enumerate}[i.]
+\item 
+
+\begin{enumerate}[(i)] 
+\item \textit{Show that a morphism can have at most one inverse isomorphism}. 
+
+We proceed by routine proof of uniqueness. Let $f : x \to y$ be a morphism with $g, h : y \rightrightarrows x$ be an inverse isomorphisms for $f$. By definition, if $g$ or $h$ are isomorphisms, then $fg = fh = 1_y$ and $gf = hf = 1_x$. Thus we have that 
+$g(fh) = g(fg) = g1_y = g$ and $(gf)g = (gf)h = 1_xh = h$ (parentheses added for emphasis). Hence, $g = h$.
+
+\item \textit{Consider a morphism $f : x \to y$. Show that if there exists a pair of morphisms $g, h: y \rightrightarrows x$ so that $gf = 1_x$ and $fh = 1_y$, then $g = h$ and $f$ is an isomorphism.}
+
+This shows that we can weaken the above to understand that for a given $f: x \to y$, \textit{any} pair of parallel morphisms $g,h: y \rightrightarrows x$ such that if $gf = 1_x$ and $fh = 1_y$ implies $g = h$ and $f$ is an isomorphism. The notion being described here is that an isomorphism is "built", so to speak, by the data of a right and left inverse. If these inverses coincide, then one has an isomorphism! 
+
+As before, note that if $gf = 1_x$, then $(gf)h = 1_x h = h$. Likewise, we have that $fh = 1_y$, and therefore $g(fh) = g1_y = g$. Hence, $fgfh = fg = fh$, which implies $fg = 1_y$. Hence, $g$ is a two-sided inverse, and $h$ is as well, and hence, are isomorphisms. According to the previous exercise, these must coincide.
+
+\item \textit{Let $\cc$ be a category. Show that the collection of isomorphisms in $\cc$ defines a subcategory, the \textbf{maximal groupoid} of $\cc$.} 
+
+First, let's show that the collection of isomorphisms of $\cc$ defines a subcategory, $\subcat{Iso}{C}$ which has a groupoid structure. Then, we will prove it is maximal in a precise sense. 
+
+Note that for any object $c \in \cc$, we require that $c \in  \subcat{Iso}{C}$, since the identity morphism is an isomorphism. Thus the objects of $\subcat{Iso}{C}$ must be those of $\cc$. Additionally, composition in $\subcat{Iso}{C}$ is that of $\cc$. Indeed, it is a groupoid by definition, since all isomorphisms are invertible, and this subcategory $\subcat{Iso}{C}$.
+
+Next, we must show that it is maximal. To make this precise, we simply show that for any other groupoid $\cat{G}$, then $\cat{G}$ is a subcategory of $\subcat{Iso}{C}$, or is  $\subcat{Iso}{C}$ itself. Let $\cat{G}$ be another maximal groupoid. Since $\cat{G}$ is the collection of all isomorphisms for all objects in $\cc$, we must have that every object and every isomorphism of $\subcat{Iso}{C}$ is in $\cat{G}$, hence, $\subcat{Iso}{C}$ is a subcategory of $\cat{G}$. Likewise, $\cat{G}$ is a subcategory of $\subcat{Iso}{C}$.There are no differences between these categories because isomorphisms are unique, and since they define the same objects and morphisms, they are identical. 
+\end{enumerate}
+
+
+\item For any category, show that: 
+\begin{enumerate}[(i)]
+
+\item There is a category $c / \cc$, whose objects are morphisms $f: c \to x$ with domain $c$ and in which a morphisms from $f : c \to x$ to $g: c \to y$ is a map $h : x \to y$ between the codomains so that the triangle
+
+\begin{center}
+\begin{tikzcd}
+& c \ar[dl, "f", swap] \ar[dr, "g"]
+\\ x \ar[rr, "h", swap] & & y
+\end{tikzcd}
+\end{center}
+commutes, i.e., so that $g = hf$. 
+
+\newpage
+We must show that the above forms a category $c / \cc$ with objects that are morphisms $f : c \to x$, $g : c \to y$ in $\cc$, and morphisms $h : x \to y$. Consider the following triangles, which are the identity for $f$ and composite arrow for $h'h$ for $h': y \to z$, respectively:
+
+\[
+\begin{aligned}
+\begin{tikzcd} 
+& c \ar[dl, "f", swap] \ar[dr, "g"]
+\\ x \ar[rr, "1_x", swap] & & x
+\end{tikzcd}
+\qquad
+\begin{tikzcd} 
+& c \ar[dl, "f", swap] \ar[dr, "g"] \ar[rr, equal] & & c \ar[dl, "g", swap] \ar[dr, "k"]
+\\ x \ar[rr, "h", swap] \ar[rrrr, "h'h", bend right] & & y \ar[rr, "h'", swap] & & z
+\end{tikzcd}
+\end{aligned}
+\]
+
+Note that composition of the latter triangles is associative, inheriting associativity from the underlying category $\cc$, and the identity triangle is indeed an identity as a result. Hence, $c / \cc$ is a category, and dually, $\cc / c$ is a category, satisfying $(ii)$. 
+\end{enumerate}
+\end{enumerate}
+
+\subsection{Duality}
+
+In this section, we discuss additional structure of morphisms, and introduce the notion of "duality" and opposite categories $\cc^{op}$. 
+
+\subsubsection{}
+
+\begin{enumerate}[(i)]
+\item Show that $\cc/c \cong \op{(c /\opc)}$. Defining $\cc / c$ to be $\op{(c /\opc)}$, deduce the last 2 exercises from section 1.1.
+
+Note that $c/\opc$ is simply $c / \cc$ with the morphisms reversed. Morphisms in the original category are simply arrows $h : x \to y$ between the codomains of objects $f :  c \to x$ and $g : c \to y$, hence, morphisms in $c / \opc$ simply reverse direction, so that $h$ becomes $\op{h}: y \to x$. Indeed, if we consider $\op{(c / \opc)}$, then the opposite functor takes $f,g$ to $\op{f}, \op{g}$ and $\op{h}$ to $\op{(\op{h})} = h$. Thus we can see that the direction of $f$ and $g$ reverse, but $h$ is as it was defined - a morphism in $\cc$ again. However, the direction of $f$ and $g$ has reversed, we now have objects $\op{f} : x \to c$, and $\op{g} : y \to c$. This is precisely the data of $\cc / c$. 
+\end{enumerate}
+
+\subsubsection{}
+\begin{enumerate}[(i)]
+
+\item Show that a morphism $f: x \to y$ is a split epimorphism in a category $\cc$ if and only if for all $c \in \cc$, post-composition $f_*: \cc(c,x) \to \cc(c,y)$ defines a surjective function. 
+
+Lets show the original implication $(\Rightarrow)$ first. Let $f : x \to y$ be a split epimorphism. By definition, a morphism is a split-epimorphism if there exists a monomorphism $s : y \to x$ which is a right inverse of $f$ - i.e. $fs = 1_y$.  Note that since $s$ is monic, by definition 1.2.7, post-composition by $s$ defines an injection $s_* : \cc(c,y) \to \cc(c, x)$. Now consider post-composition by $f$. $f_*s_* = 1_{\cc(c,x)}$, hence the induced $f_*$ and $s_*$ is also a split monic and epic pair, and hence, $f_*$ is a surjection. 
+
+Now lets show $(\Rightarrow)$. Let $f_*$ be a surjection for all $c \in \cc$. Note that in $\opc$, $\op{f_*} : \opc(y,c) \to \opc(x,c)$ is an injection. By 1.2.7, this defines an epimorphism in $f: x \to y$ in $\cc$.
+
+\item Argue by duality... 
+
+Left up to meetup. This one isn't bad, just tedious.
+
+\end{enumerate}
+
+\subsubsection{}
+
+Lets do $(i)$ and $(ii')$ for flavor, but we should probably do the others in the meetup.
+
+\begin{enumerate}[(i)]
+
+\item If $f : x \mono y$ is monic and $g : y \mono$ is monic, then $gf : x \mono z$ is also monic.
+
+Let $h,k : w \rightrightarrows x$ and suppose $gfh = gfk$. We will show that $gf$ is monic. Note that by associativity, $g(fh) = g(fk)$ implies that $fh = fk$ since $g$ is mono. Likewise, $fh = fk$ implies $h = k$ since $f$ is mono. Hence, $(gf)h = (gf)k$ implies $h = k$. Thus, $gf$ is monic. 
+
+\item If $f : x \to y$ and $g : y \to z$ are morphisms, then if $gf$ is epic, $g$ is epic. 
+
+Suppose $gf$ is epic. Let $h, k : z \to w$, and suppose $hgf = kgf$. Since $gf$ is epic, this implies $h = k$. However, note that $hg = kg$, then $hgf = kgf$ implies $h = k$ by epicness of $gf$. Hence, $g$ must be epic.
+
+Now, note that monomorphisms (resp. epimorphisms) are closed under composition and defines a trivial monomorphism (resp. epimorphism) for all for every $c \in \cc$. Thus, the class of mono- and epimorphisms define subcategories of $\cc$.
+\end{enumerate}
+
+\subsubsection{}
+
+Jumping to exercise $1.2.iv$. 
+
+\begin{enumerate}[(i)]
+
+\item Prove that a morphism that is both a monomorphism and a split epimorphism is necessarily an isomorphism. Prove its dual statement. 
+
+Let $f: x \to y$ be a monomorphism and a retract for $s : y \to x$. To prove $f$ is an isomorphism, we must prove that $f$ has a two-sided inverse. Note that $s$ is probably a good candidate, since it is already a one-sided inverse for $f$ - $fs = 1_y$. Note that $s$ is the unique right inverse of $f$, since if there were another $s' : y \to x$, then if $fs = fs'$, then $s = s'$ because $f$ is monic. Note also, by $f$'s monic properties that $fsf = f1_x$ implies $sf = 1_x$. Hence $s$ is a unique two-sided inverse for $f$. 
+
+Flip the arrows for the dual statement. Lets do this in the meetup. 
+\end{enumerate}
+
+\subsection{Functoriality}
+
+
+\begin{enumerate}[(i)]
+
+\item What is a functor between groups, regarded as one-object categories?
+
+The category structure of a group seen as a one-object category $\cat{BG}$ contains the following data: there is a single object, $*$, and morphisms the whole of the group $G$. Thus, each element of $G$ can be seen as an element collection of endomorphisms $\cat{BG}(*,*)$. A functor of groups $F: \cat{BG} \to cat{BG'}$ takes objects to objects and morphisms to morphisms. Hence, $F : * \mapsto *$ and $F(gh) = FgFh = g'h'$ in $\cat{BG'}$. Note also that the identity element in $G$ maps to the $1_*$, hence, $F1_* = 1_{F* = *}$, which tells us that identities map to identities. This is precisely the structure of the group homomorphism with which we are familiar.
+
+\item What is a functor between preorders regarded as categories? 
+
+Monotonic functions. 
+
+\item Verify that the constructions introduced in 1.3.11 are functorial 
+
+Lets do this in meetup
+
+\item Find an example to show that the objects and morphisms in the image of a functor $F : \cc \to \dd$ do not necessarily define a subcategory of $\dd$. 
+
+\href{This MO question}{https://math.stackexchange.com/questions/413138/can-it-happen-that-the-image-of-a-functor-is-not-a-category}
+
+
+\item What is the difference between a functor $\opc \to \dd$ and a functor $\cc \to \opd$? What is the difference between a functor $\cc \to \dd$ and $\opc \to \opd$?
+
+A functor $F : \opc \to \dd$ maps arrows $d \to c$ to arrows $Fc \to Fd$, while $F : \cc \to \opd$ maps $c \to d$ to $Fd \to Fc$. The outcome? roughly the same. It depends on the intent. Note that the two constructions are dual, but $F$ is always a contravariant funtor. Likewise, next case, $F$ is always a covariant functor. There is a kind of polarity thing going on here, as well, where one can view variance as positive or negative polarity. The composition of two co- or contravariant functors is a covariant functor, and the composition of contra with covariant is contravariant no matter what. 
+
+\item Given functors $ F : \dd \to \cc$ and $G : \ee \to \cc$, show that there is a category, called the \textbf{comma category} $F \downarrow G$ which has 
+
+\begin{itemize}
+\item as objects, triples $(d \in \dd, e \in \ee, f : Fd \to Ge \in \cc)$, and 
+\item as morphisms $(d, e, f) \to (d', e', f')$, a pair of morphisms $(h : d \to d', k: e \to e')$ so that the square 
+
+\begin{center}
+\begin{tikzcd}
+Fd \ar[r, "f"] \ar[d, "Fh", swap] & Ge \ar[d, "Gk"]
+\\ Fd' \ar[r, "f'", swap] & Ge'
+\end{tikzcd}
+\end{center}
+
+commutes in $\cc$, i.e., so that $f' \cdot Fh = Gk \cdot f$. 
+\end{itemize}
+
+Define a pair of projection functors $dom : F \downarrow G \to \dd$ and $cod : F \downarrow G \to \ee$. 
+
+
+First, note the target categories are $\dd$ and $\ee$ respectively for these projection functors. Define $dom$ and $cod$ as follows: For each object (triple) in $F \downarrow G$, take first projections to be $dom$, and for $cod$, second projections. 
+
+\item Define functors to construct the slice categories $c / \cc$ and $\cc / c$ as special cases of comma categories. What are the projection functors?
+
+Let $F : \one \to \cc$ be the functor from the terminal category $\one$ to the object $c \in \cc$. Let $G \cong 1_{\cc}$. Then, the data of the comma category construction gives us objects $(* \in \one, x \in \cc, f : c \to x)$, and morphisms $(*, x, f: c \to x) \to (*, y, g: c \to y)$ given by a pair $(1_*, k: x \to y)$. 
+
+\newpage
+
+Thus, we have the square
+
+\begin{center}
+\begin{tikzcd}
+c \ar[r, "f"] \ar[d, equal] & x \ar[d, "h"]
+\\ c \ar[r, "g", swap] & y
+\end{tikzcd}
+\end{center}
+
+Dually, we, swap $F$ and $G$ to achieve the over slice category. The projection functors for this data  remain the same. 
+
+\item Lets do this one in the Meetup.
+\end{enumerate}
+
+\subsection{Naturality}
+
+This section begins to discuss naturality, natural transformations, and (de)categorification. 
+
+\begin{enumerate}[(i)]
+\item 
+\end{enumerate}
+\end{document}  
