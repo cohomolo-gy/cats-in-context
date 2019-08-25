@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.5.23)  25 AUG 2019 00:18
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.5.23)  25 AUG 2019 10:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1308,7 +1308,7 @@ Package rerunfilecheck Info: File `"Chapter 1 Solutions".out' has not changed.
 Here is how much of TeX's memory you used:
  37096 strings out of 492909
  730263 string characters out of 6132923
- 1068602 words of memory out of 5000000
+ 1068604 words of memory out of 5000000
  40708 multiletter control sequences out of 15000+600000
  543571 words of font info for 98 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
