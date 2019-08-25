@@ -127,7 +127,7 @@ Note that $c/\opc$ is simply $c / \cc$ with the morphisms reversed. Morphisms in
 
 Lets show the original implication $(\Rightarrow)$ first. Let $f : x \to y$ be a split epimorphism. By definition, a morphism is a split-epimorphism if there exists a monomorphism $s : y \to x$ which is a right inverse of $f$ - i.e. $fs = 1_y$.  Note that since $s$ is monic, by definition 1.2.7, post-composition by $s$ defines an injection $s_* : \cc(c,y) \to \cc(c, x)$. Now consider post-composition by $f$. $f_*s_* = 1_{\cc(c,x)}$, hence the induced $f_*$ and $s_*$ is also a split monic and epic pair, and hence, $f_*$ is a surjection. 
 
-Now lets show $(\Leftarrow)$. Let $f_*$ be a surjection for all $c \in \cc$. Note that in $\opc$, $\op{f_*} : \opc(y,c) \to \opc(x,c)$ is an injection. By 1.2.7, this is equivalent to epimorphism $f: x \to y$ in $\cc$.
+Now lets show $(\Leftarrow)$. Let $f_*$ be a surjection for all $c \in \cc$. Note that in $\opc$, $\op{f_*} : \opc(y,c) \to \opc(x,c)$ is an injection. By 1.2.7, this is equivalent to an epimorphism $f: x \to y$ in $\cc$.
 
 \item Argue by duality... 
 
@@ -147,9 +147,9 @@ Let $h,k : w \rightrightarrows x$ and suppose $gfh = gfk$. We will show that $gf
 
 \item If $f : x \to y$ and $g : y \to z$ are morphisms, then if $gf$ is epic, $g$ is epic. 
 
-Suppose $gf$ is epic. Let $h, k : z \to w$, and suppose $hgf = kgf$. Since $gf$ is epic, this implies $h = k$. However, note that $hg = kg$, then $hgf = kgf$ implies $h = k$ by epicness of $gf$. Hence, $g$ must be epic.
+Suppose $gf$ is epic. Let $h, k : z \to w$, and suppose $hgf = kgf$. Since $gf$ is epic, this implies $h = k$. However, note that if $hg = kg$, then $hgf = kgf$ implies $h = k$ by epicness of $gf$. Hence, $g$ must be epic.
 
-Now, note that monomorphisms (resp. epimorphisms) are closed under composition and defines a trivial monomorphism (resp. epimorphism) for all for every $c \in \cc$. Thus, the class of mono- and epimorphisms define subcategories of $\cc$.
+Now, note that monomorphisms (resp. epimorphisms) are closed under composition and the identity for defines a trivial monomorphism (resp. epimorphism) for all for every $c \in \cc$. Thus, the class of mono- and epimorphisms define subcategories of $\cc$.
 \end{enumerate}
 
 \subsubsection{}
