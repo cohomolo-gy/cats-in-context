@@ -28,6 +28,13 @@
 \newcommand{\mono}{\rightarrowtail}
 \newcommand{\epi}{\twoheadrightarrow}
 \newcommand{\one}{\mathbb{1}}
+\newcommand{\bg}{\cat{BG}}
+\newcommand{\bgg}{\cat{BG'}}
+\newcommand{\nt}{\Rightarrow}
+\newcommand{\ant}[2]{\alpha : F \nt G} 
+\newcommand{\bnt}[2]{\beta : F \nt G} 
+\newcommand{\anti}[2]{\alpha : F \cong G} 
+\newcommand{\bnti}[2]{\beta : F \cong G} 
 %SetFonts
 
 %SetFonts
@@ -237,6 +244,48 @@ Dually, we, swap $F$ and $G$ to achieve the over slice category. The projection 
 This section begins to discuss naturality, natural transformations, and (de)categorification. 
 
 \begin{enumerate}[(i)]
-\item 
+\item Suppose $\ant{F}{G}$ is a natural isomorphism. Show that the inverses of the component morphisms define the components of a natural isomorphism $\alpha^{-1} : G \Rightarrow F$
+
+Let $\alpha$ be a natural isomorphism. By definition, this means that every component $\alpha_c$ is an isomorphism. Hence, every component $\alpha_c$ has a unique two-sided inverse - call it $\alpha^{-1}_c : Gc \to Fc$. Since $\alpha_c$ ranges over all $c \in \cc$, so too must $\alpha^{-1}_c$, defining precisely the data of a transformation $G \Rightarrow F$. Naturality follows from the naturality of $\alpha_c$. For if each component $\alpha^{-1}_c$ is an inverse for $\alpha_c$, then the following rectangle must commute for some $f : c \to d$: 
+
+\begin{center}
+\begin{tikzcd}
+
+Gc \ar[r, "\alpha^{-1}_c"] \ar[d, "Gf", swap] \ar[rr, "1_{Gc}", bend left = 40] & Fc \ar[d, "Ff"] \ar[r, "\alpha_c"] & Gc \ar[d, "Gf"]
+\\ Gd \ar[r, "\alpha^{-1}_d", swap] \ar[rr, "1_{Gd}", bend right = 40, swap] & Fd \ar[r, "\alpha_d", swap] & Gd
+\end{tikzcd}
+\end{center}
+
+\item What is a natural transformation between a parallel pair of functors between groups, regarded as one-object categories? 
+
+Let $\ant{F}{G}$ be a natural transformation between functors $F, G: \bg \to \bgg$. The data of $\alpha$ consists of components $\alpha_g$ for each $g \in G$ such that $Fg \to Gg$. From the previous exercises, we know that functors $F, G$ of these categories translate into group homomorphisms $G \to G'$ mapping unital elements to unital elements, and preserving the group structure. There is precisely one component of $\alpha$:  $\alpha_*$. The picture being revealed is that of a composition between permutation of the group $\bg$ - an inner automorphism - and a homomorphism of groups. 
+
+\item If you're into it, go for it.
+
+\item In the notation of Example 1.4.7, prove that distinct parallel morphisms $f,g : c \rightrightarrows d$ define distinct natural transformations 
+
+\[
+\begin{aligned}
+f_*,g_* : \cc(-,c) \Rightarrow \cc(-, d) \qquad \text{ and } \qquad f^*, g^* : \cc(d, -) \Rightarrow \cc(c, -)
+\end{aligned}
+\]
+
+Lets suppose that $f,g$ were distinct, but defined indistinct natural transformations. This yields a contradiction via the naturality condition. lets write this one out. 
+
+\item Recall the construction of the comma category for any pair of functors $F : \dd \to \cc$ and $G : \ee \to \cc$ described in the previous section's exercises. From this data, construct a canonical natural transformation $\alpha : F dom \nt G cod$ between the functors that form the boundary of the square
+
+\begin{center}
+\begin{tikzcd}
+F \downarrow G \ar[r, "cod"] \ar[d, "dom", swap] & \ee \ar[d, "G"]
+\\ \dd \ar[r, "F", swap] \ar[ur, Rightarrow, "\alpha" , shorten = 5mm] & \cc
+\end{tikzcd}
+\end{center}
+
+The components $\alpha_d$ must translate $(F dom) d \nt (G cod) d$ for $d = dom c$. Because $c \in F \downarrow G$, it is a triple,  $(d, e, f : Fd \to Ge)$, $(Fdom) c$ is $Fd$ for $d \in \dd$. In order to translate $Fd \to Gd$, we must factor through $F \downarrow G$. Lets do this one in meetup.
+
+\item TODO
+
+
+
 \end{enumerate}
 \end{document}  
