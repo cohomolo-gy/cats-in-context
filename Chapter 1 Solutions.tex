@@ -88,7 +88,6 @@ Next, we must show that it is maximal. To make this precise, we simply show that
 \end{center}
 commutes, i.e., so that $g = hf$. 
 
-\newpage
 We must show that the above forms a category $c / \cc$ with objects that are morphisms $f : c \to x$, $g : c \to y$ in $\cc$, and morphisms $h : x \to y$. Consider the following triangles, which are the identity for $f$ and composite arrow for $h'h$ for $h': y \to z$, respectively:
 
 \[
@@ -173,7 +172,7 @@ Flip the arrows for the dual statement. Lets do this in the meetup.
 
 \item What is a functor between groups, regarded as one-object categories?
 
-The category structure of a group seen as a one-object category $\cat{BG}$ contains the following data: there is a single object, $*$, and morphisms the whole of the group $G$. Thus, each element of $G$ can be seen as an element collection of endomorphisms $\cat{BG}(*,*)$. A functor of groups $F: \cat{BG} \to cat{BG'}$ takes objects to objects and morphisms to morphisms. Hence, $F : * \mapsto *$ and $F(gh) = FgFh = g'h'$ in $\cat{BG'}$. Note also that the identity element in $G$ maps to the $1_*$, hence, $F1_* = 1_{F* = *}$, which tells us that identities map to identities. This is precisely the structure of the group homomorphism with which we are familiar.
+The category structure of a group seen as a one-object category $\cat{BG}$ contains the following data: there is a single object, $*$, and morphisms the whole of the group $G$. Thus, each element of $G$ can be seen as an element collection of endomorphisms $\cat{BG}(*,*)$. A functor of groups $F: \cat{BG} \to \cat{BG'}$ takes objects to objects and morphisms to morphisms. Hence, $F : * \mapsto *$ and $F(gh) = FgFh = g'h'$ in $\cat{BG'}$. Note also that the identity element in $G$ maps to the $1_*$, hence, $F1_* = 1_{F* = *}$, which tells us that identities map to identities. This is precisely the structure of the group homomorphism with which we are familiar.
 
 \item What is a functor between preorders regarded as categories? 
 
@@ -216,8 +215,6 @@ First, note the target categories are $\dd$ and $\ee$ respectively for these pro
 \item Define functors to construct the slice categories $c / \cc$ and $\cc / c$ as special cases of comma categories. What are the projection functors?
 
 Let $F : \one \to \cc$ be the functor from the terminal category $\one$ to the object $c \in \cc$. Let $G \cong 1_{\cc}$. Then, the data of the comma category construction gives us objects $(* \in \one, x \in \cc, f : c \to x)$, and morphisms $(*, x, f: c \to x) \to (*, y, g: c \to y)$ given by a pair $(1_*, k: x \to y)$. 
-
-\newpage
 
 Thus, we have the square
 

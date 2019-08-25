@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.5.23)  25 AUG 2019 00:02
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.5.23)  25 AUG 2019 00:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1290,28 +1290,28 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/bx/n' will be
 
 [1
 
-] [2] [3] [4]
-Overfull \hbox (7.75539pt too wide) in paragraph at lines 188--189
+] [2] [3]
+Overfull \hbox (7.75539pt too wide) in paragraph at lines 187--188
 [][]\TU/lmr/m/n/10 https://math.stackexchange.com/questions/413138/can-it-happe
 n-that-the-image-of-a-functor-
  []
 
-[5] [6]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 243.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 243.
+[4] [5]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 240.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 240.
  (./Chapter 1 Solutions.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 243.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 243.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 240.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 240.
 Package rerunfilecheck Info: File `"Chapter 1 Solutions".out' has not changed.
 (rerunfilecheck)             Checksum: .
  ) 
 Here is how much of TeX's memory you used:
  37096 strings out of 492909
  730263 string characters out of 6132923
- 1068601 words of memory out of 5000000
+ 1068602 words of memory out of 5000000
  40708 multiletter control sequences out of 15000+600000
  543571 words of font info for 98 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  61i,19n,109p,896b,1198s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on Chapter 1 Solutions.pdf (6 pages).
+Output written on Chapter 1 Solutions.pdf (5 pages).
