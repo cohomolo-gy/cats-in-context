@@ -208,7 +208,7 @@ A functor $F : \opc \to \dd$ maps arrows $d \to c$ to arrows $Fc \to Fd$, while 
 
 \begin{center}
 \begin{tikzcd}
-Fd \ar[r, "f"] \ar[d, "Fh", swap] & Ge \ar[d, "Gk"]
+Fd \ar[r, "f"] \ar[d, "h", swap] & Ge \ar[d, "k"]
 \\ Fd' \ar[r, "f'", swap] & Ge'
 \end{tikzcd}
 \end{center}
@@ -218,6 +218,19 @@ commutes in $\cc$, i.e., so that $f' \cdot Fh = Gk \cdot f$.
 
 Define a pair of projection functors $dom : F \downarrow G \to \dd$ and $cod : F \downarrow G \to \ee$. 
 
+
+To prove that $F \downarrow G$ is a category, we must show that composition is well-defined, and that every object has an associated identity morphism. The latter is easiest: the identity morphism for a triple $(d, e, f)$ is simply the data $1_{(d,e,f)} = (1_d, 1_e)$. It's clear that this is an identity, since, for any other $f = (h : d \to d', k: e \to e')$, and $f1_{(d,e,f)} = 1_{(d',e',f')}f = f$. Also note that for any other morphism $g = (h': d' \to d'', k' : e' \to e'')$, then composition is that of commutative squares: 
+
+\begin{center}
+\begin{tikzcd}
+Fd \ar[r, "f"] \ar[d, "h", swap] & Ge \ar[d, "k"]
+\\ Fd' \ar[r, "f'", swap] \ar[d, "h'", swap] & Ge' \ar[d, "k"]
+\\ Fd'' \ar[r, "f''", swap] & Ge''
+
+\end{tikzcd}
+\end{center}
+
+Note that since commutative squares are, well, commutative, that "pasting" squares together along one side or another is well-defined. Now, lets define some projections. 
 
 First, note the target categories are $\dd$ and $\ee$ respectively for these projection functors. Define $dom$ and $cod$ as follows: For each object (triple) in $F \downarrow G$, take first projections to be $dom$, and for $cod$, second projections. 
 
@@ -281,9 +294,15 @@ F \downarrow G \ar[r, "cod"] \ar[d, "dom", swap] & \ee \ar[d, "G"]
 \end{tikzcd}
 \end{center}
 
-The components $\alpha_d$ must translate $(F dom) d \nt (G cod) d$ for $d = dom c$. Because $c \in F \downarrow G$, it is a triple,  $(d, e, f : Fd \to Ge)$, $(Fdom) c$ is $Fd$ for $d \in \dd$. In order to translate $Fd \to Gd$, we must factor through $F \downarrow G$. Lets do this one in meetup.
+Note that both $F \cdot dom$ and $G \cdot cod$ are $\cc$-valued functors, and that $dom (d, e, f) = d, cod (d, e, f) = e$. Also note that by the construction of $dom$ and $cod$, $(F \cdot dom)(d,e,f) = Fd$ and $(G \cdot cod)(d,e,f) = Ge$. Hence, the naturality square for $\alpha$ reduces to the following data: 
 
-\item TODO
+\begin{center}
+\begin{tikzcd}
+Fd \ar[r, "f"] \ar[d, "h", swap] & Ge  \ar[d, "k"]
+\\ Fd' \ar[r, "f'", swap] & Ge' 
+\end{tikzcd}
+\end{center}
+
 
 
 
