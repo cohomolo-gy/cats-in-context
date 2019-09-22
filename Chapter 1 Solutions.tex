@@ -406,6 +406,33 @@ Now lets do $ii$. Suppose $x, y \in \cc$ such that $Fx \cong Fy \in \dd$. Note t
 \item Show an example of a faithful functor that does not reflect isomorphisms. 
 
 Example: Consider two topological spaces which are not homeomorphic, with the same number of elements (say, the Mobius band and $\mathbb{R}$). Consider the forgetful functor $U : \cat{Top} \to \cat{Set}$. As sets, these two are isomorphic (they share cardinalities), however, as topological spaces, they are not isomorphic and never will be. Hence, $U$ does not reflect isomorphisms!
+
+
+\item 
+\begin{enumerate}[i]
+
+	\item Prove that the composite of a pair of full, faithful, or eso functors again has the same properties.  
+	
+	This one is relatively simple. Note that if $F : \cc \to \dd, G: \dd \to \ee$, with $F$ and $G$ full, then the maps $\cc(c, d) \to \dd(Fc, Fd)$ and $\dd(x, y) \to \ee(Gx, Gy)$ are surjections, and the composition of surjections 		is again a surjection (see section 1.3). Hence, the map $\cc(c, d) \to \ee(GFc, GFd)$ is again a surjection. Equivalently, take $F$ and $G$ to be faithful, and the same holds true for the composition of  injections. If $F$ 			and $G$ are eso, then for every object $d \in \dd$, we have a $c \in \cc$ such that $Fc \cong d$, and for every $e \in \ee$, we have an object $d \in \dd$ such that $Gd \cong e$. Composing $F$ and $G$, and with the 		correct choice of object, we have that $GFc = G(Fc) \cong Gd \cong e$. Hence, $GF$ is a essentially surjective on objects when $F$ and $G$ also are. 
+
+	\item Prove that if $\cc \simeq \dd$ and $\dd \simeq \ee$, then $\cc \simeq \ee$. Conclude that equivalence of categories is an equivalence relation. 
+	
+		Let $\cc \simeq \dd$ and $\dd \simeq \ee$. Then, there exist natural transformations between functors $\epsilon : 1_{\cc} \cong GF$, $\eta : FG \cong 1_{\dd}$ and $\epsilon' : 1_{\dd} \cong HG$, $\eta' : GH \cong 1_{\ee}$. Note that the composition of components of natural isomorphisms again forms a composite natural isomorphism via horizontal composition in $\dd$ given $f : d \to d'$ :  
+		
+		\begin{center}
+			\begin{tikzcd}
+				HGd \ar[d, "HGf", swap] \ar[r, "\epsilon'_d"] & d \ar[d, "f"] \ar[r, "\eta_d"] & FGd \ar[d, "FGf"] \\
+				HGd' \ar[r, "\epsilon'_{d'}", swap] & d' \ar[r, "\eta_{d'}", swap] & FGd'
+			\end{tikzcd}
+		\end{center}
+		
+		A similar argument is made to establish the natural isomorphisms for the remaining transformations. It is readily apparent that $\cc \simeq \cc$, since $1_{\cc}$ is naturally isomorphic to itself, and that equivalence is symmetric, since natural isomorphisms are commutative relations. Indeed, the above establishes the transitivity of equivalence, and hence equivalence of categories is an equivalence relation.
+\end{enumerate}
+
+\item (1.5.xi) Show that any category that is equivalent to a locally small category is itself locally small. 
+
+Suppose the above is true for $\cc \to \dd$ with $\dd$ locally small. Recall that every equivalence gives rise to a fully faithful and eso functor $F : \cc \to \dd$. Since the maps $\cc(c, d) \to \dd(Fc, Fd)$ are then in bijection, and $F$ is surjective on objects, it must be true that $\cc(c, d)$ is a set itself (it is at least isomorphic to one), ranging over all pairs of $c$ and $d$. Hence, $\cc$ is locally small. 
+
 \end{enumerate}
 
 \end{document}  
