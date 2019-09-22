@@ -27,7 +27,6 @@
 \newcommand{\ope}{\op{\ee}}
 \newcommand{\mono}{\rightarrowtail}
 \newcommand{\epi}{\twoheadrightarrow}
-\newcommand{\one}{\mathbb{1}}
 \newcommand{\bg}{\cat{BG}}
 \newcommand{\bgg}{\cat{BG'}}
 \newcommand{\nt}{\Rightarrow}
@@ -35,6 +34,10 @@
 \newcommand{\bnt}[2]{\beta : F \nt G} 
 \newcommand{\anti}[2]{\alpha : F \cong G} 
 \newcommand{\bnti}[2]{\beta : F \cong G} 
+\newcommand{\zero}{\mathbb{0}}
+\newcommand{\one}{\mathbb{1}}
+\newcommand{\two}{\mathbb{2}}
+\newcommand{\three}{\mathbb{3}}
 %SetFonts
 
 %SetFonts
@@ -302,9 +305,107 @@ Fd \ar[r, "f"] \ar[d, "h", swap] & Ge  \ar[d, "k"]
 \\ Fd' \ar[r, "f'", swap] & Ge' 
 \end{tikzcd}
 \end{center}
-
-
-
-
 \end{enumerate}
+
+\subsection{Equivalence of Categories}
+
+This section deals with notions of equivalence and different flavors of functor.
+
+\begin{enumerate}[(i)]
+	\item Fixing a parallel pair of functors $F,G: \cc \rightrightarrows \dd$, natural transformations
+$\alpha : F \Rightarrow G$ correspond bijectively to functors $H : \cc \times \two \to \dd$ such that $H$ restricts along $i_0$
+and $i_1$ to the functors $F$ and $G$, i.e., so that
+	
+\begin{center}
+\begin{tikzcd}
+	\cc \ar[r, "i_0"] \ar[dr, "F", swap] & \cc \times \two \ar[d, "H"] & \dd \ar[l, "i_1", swap] \ar[dl, "G"]
+	\\ & \dd
+	
+\end{tikzcd}
+\end{center}
+
+We begin by defining $H \in \{ H : \cc \times \two \to \dd \}$ such that $H(c, 0) := F$ and $H(c, 1) := G$. Then, we note that, for the unique arrow $k : 0 \to 1 \in \two$, we can define $H(c, k) := \alpha_c : Fc \to Gc$ for all $\alpha \in \cat{Nat}(F, G)$ and every $c \in \cc$. This construction forms one half of the bijection $\cat{Nat}(F, G) \cong \{ H : \cc \times \two \to \dd \}$. Next, we define the other half of the bijection as follows: let $H \in \{ H : \cc \times \two \to \dd \}$. Note that $H$ immediately induces a natural transformation for for all pairs $(c, k)$ where $c \in \cc$ and $k$ is defined as above. We'll prove that $H$ is indeed natural for $f: c \to d$: 
+
+\begin{center}
+\begin{tikzcd}
+	H(c, 0) := Fc \ar[r, "{H(c, k) := \alpha_c}"] \ar[d, "{H(f, 0) \cong Ff}", swap] & H(c, 1) := Gc \ar[d, "{H(f, 1) \cong Gf}"]
+	\\ H(c', 0) := Fc' \ar[r, "{H(c', k) := \alpha_{c'}}", swap] & H(c', 1) := Gc'
+	
+\end{tikzcd}
+\end{center}
+
+\item Segal defined a category $\Gamma$ as follows: 
+
+{\addtolength{\leftskip}{5mm}
+
+$\Gamma$ is a category whose objects are all finite sets, and whose morphisms from $S$ to $T$ are maps $\theta : S \to P(T)$ such that $\theta(\alpha)$ and $\theta(\beta)$ are disjoint when $\alpha \neq \beta$. The composite $\theta : S \to P(T)$ and $\phi : T \to P(U)$ is $\psi : S \to P(U)$ where $\psi(\alpha) = \bigcup_{\beta \in \theta(\alpha)} \psi(\beta)$.
+}
+
+Prove that $\Gamma$ is equivalent to the opposite of the category $\cat{Fin_*}$ of finite pointed sets. In particular, functors introduced in Example 1.3.2(xi) define presheaves on $\Gamma$.
+
+Let us show that $\Gamma$ is a category. First, we must show that identities and composition are well-defined, and afterwards, that this composition is associative. Note that composition is given to us by the definition above. In particular, the identity morphism for any $S$ is $1_S : S \to P(S) $. For any other $f : S \to P(T)$, we have that $f1_S(S) = f(S) = \bigcup_{\beta \in 1_S(S) = S} 1_S(\beta)$. Note that $1_S(\alpha)$ for $\alpha \in P(S)$ restricts to $1_{\alpha}$. Hence, $\bigcup_{\beta \in S} 1_S(\beta)$ amounts to $\bigcup_{\beta \in S} 1_\beta(\beta)$, and hence, is simply $S$. Thus, $f1_S = f$, Likewise, the same argument can be made for $1_Tf$. 
+
+Let $f : S \to P(T), g: T \to P(U)$, and $h: U \to P(W)$. We will show that the composite $hgf$ is associative: 
+
+\begin{equation*}
+	\begin{aligned}
+		(h(gf))(\alpha) & = \bigcup_{\gamma \in gf(\alpha)} h(\gamma) \\
+				      & = \bigcup_{\gamma \in \bigcup_{\beta \in f(\alpha)} g(\beta)} h(\gamma)\\
+				      & = \bigcup_{\beta \in f(\alpha)} hg(\beta)  \\
+				      &= ((hg)f)(\alpha)
+	\end{aligned}
+\end{equation*} 
+
+The latter 2 steps are achieved by noting that the composition $hg(\beta) :=  \bigcup_{\gamma \in g(\beta)} h(\gamma)$. Now let's use these facts to prove that there is an equivalence $\Gamma  \simeq \cat{Fin_*}^{op}$. Define the functor $F : \Gamma \to \cat{Fin_*}^{op}$ as follows: 
+
+Define $F$ such that for any morphism in $\Gamma$, $f : S \to T$, we have a map in $\cat{Fin_*^{op}}: Ff : T \times \{\beta\} \to S \times \{\alpha\}$ mapping each $\beta \in P(T)$ to its preimage $\alpha \in S$. Check that this composes, and that the identity for such a map is $1_S : S \times \{S\} \to S \times \{S\} \in \cat{Fin_*^{op}}$ - the image of $1_S \in \Gamma$. Note that this is a contravariant mapping, since $F(gf) = Ff \cdot Fg : U \times \{\gamma\} \to S \times \{\alpha\}$. Hence $F$ is a functor.
+
+Lets define the other half in meeting.
+
+
+\item Prove Lemma 1.5.10: Any morphism $f : a \to b$ and fixed isomorphisms $a \cong a'$ and $b \cong b'$ determine a unique morphism $f' : a' \to b'$ so that any of, or equivalently, all of the for diagrams commute: 
+
+
+\[
+	\begin{aligned}
+		\begin{tikzcd}
+			 a \ar[d, "f", swap] & a' \ar[l, "\cong", swap] \ar[d, "f'"] \\
+			b \ar[r, "\cong", swap] & b'
+		\end{tikzcd}
+		\qquad
+		\begin{tikzcd}
+			a \ar[d, "f", swap] \ar[r, "\cong"] & a' \ar[d, "f'"] \\
+			b \ar[r, "\cong", swap] & b'
+		\end{tikzcd}
+		\qquad
+		\begin{tikzcd}
+			a \ar[d, "f", swap] & a' \ar[l, "\cong", swap] \ar[d, "f'"] \\
+			b & b' \ar[l, "\cong"]
+		\end{tikzcd}
+		\qquad
+		\begin{tikzcd}
+			a \ar[d, "f", swap] \ar[r, "\cong"] & a' \ar[d, "f'"] \\
+			b  & b' \ar[l, "\cong"]
+		\end{tikzcd}
+	\end{aligned}
+\]
+
+We'll prove one of these, and the rest will follow. Let's do the first one. Let $a \cong a', b \cong b'$, and suppose we have $f : a \to b$. The directional arrows of the isomorphism are a red-herring: in fact, an isomorphism goes both ways! Hence, we can define $f' : a' \to b'$: Denote the top and bottom isomorphisms $k, k'$ for legibility, and define $f'$ to be the composite $f' = k'fk$. Let's prove that this is a unique morphism. Suppose that there were another $g : a' \to b'$ determined by $f, k,$ and $k'$. Then, we can show this yields an equality mechanically.
+
+\item Show that full and faithful functor $F: \cc \to \dd$ both \textbf{reflects} and \textbf{creates isomorphisms}. That is, show: 
+	\begin{enumerate}[i]
+		\item If $f$ is a morphism in $\cc$, so that $Ff$ is an isomorphism in $\dd$, then $f$ is an isomorphism. 
+		\item If $x$ and $y$ are objects in $\cc$ so that $Fx$ and $Fy$ are isomorphic in $\dd$, then $x$ and $y$ are isomorphic in $\cc$.
+	\end{enumerate}
+	The converses of these statements hold for any functor. 
+	
+Lets do $i$ first. Suppose $f : c \to d$ in $\cc$ such that $Ff$ is an isomorphism in $\dd$ with inverse $k$. Since the map $\cc(c, d) \to \dd(Fc, Fd)$ is a bijection, we know that there is some $g \in \cc(d, c)$ such that $Fg = k$. Composing with $f$, we have that $F(fg) = Ff \cdot Fg = Ff \cdot k = 1_{Fc}$. Hence, $fg$ must be an isomorphism since identities map to identities uniquely. Rinse and repeat for $F(gf)$. 
+
+Now lets do $ii$. Suppose $x, y \in \cc$ such that $Fx \cong Fy \in \dd$. Note that this means there is an isomorphism $k \in \dd(Fx, Fy)$. Since the map $\cc(x, y) \to \dd(Fx, Fy)$ is bijection, we must have that $k$ corresponds with a map $k' \in \cc(x, y)$, and since $F$ is full, we have that such a $k'$ may yield $Fk' = k$. By $i$, this implies that $k'$ is an isomorphism, whence $x \cong y$. 
+
+\item Show an example of a faithful functor that does not reflect isomorphisms. 
+
+Example: Consider two topological spaces which are not homeomorphic, with the same number of elements (say, the Mobius band and $\mathbb{R}$). Consider the forgetful functor $U : \cat{Top} \to \cat{Set}$. As sets, these two are isomorphic (they share cardinalities), however, as topological spaces, they are not isomorphic and never will be. Hence, $U$ does not reflect isomorphisms!
+\end{enumerate}
+
 \end{document}  
