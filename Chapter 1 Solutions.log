@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.5.23)  22 SEP 2019 18:58
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.5.23)  22 SEP 2019 19:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1304,19 +1304,19 @@ ed functors, and that $[][][][][][] [][] [][] [] [][] [][][][][][] [][] [][] []
  []
 
 [7] [8] [9] [10]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 438.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 438.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 452.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 452.
  (./Chapter 1 Solutions.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 438.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 438.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 452.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 452.
 Package rerunfilecheck Info: File `"Chapter 1 Solutions".out' has not changed.
 (rerunfilecheck)             Checksum: .
  ) 
 Here is how much of TeX's memory you used:
- 37656 strings out of 492909
- 744305 string characters out of 6132923
+ 37596 strings out of 492909
+ 742745 string characters out of 6132923
  1076604 words of memory out of 5000000
- 41268 multiletter control sequences out of 15000+600000
+ 41208 multiletter control sequences out of 15000+600000
  543571 words of font info for 98 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  61i,20n,109p,896b,1253s stack positions out of 5000i,500n,10000p,200000b,80000s

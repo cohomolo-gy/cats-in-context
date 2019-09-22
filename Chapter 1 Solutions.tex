@@ -417,16 +417,30 @@ Example: Consider two topological spaces which are not homeomorphic, with the sa
 
 	\item Prove that if $\cc \simeq \dd$ and $\dd \simeq \ee$, then $\cc \simeq \ee$. Conclude that equivalence of categories is an equivalence relation. 
 	
-		Let $\cc \simeq \dd$ and $\dd \simeq \ee$. Then, there exist natural transformations between functors $\epsilon : 1_{\cc} \cong GF$, $\eta : FG \cong 1_{\dd}$ and $\epsilon' : 1_{\dd} \cong HG$, $\eta' : GH \cong 1_{\ee}$. Note that the composition of components of natural isomorphisms again forms a composite natural isomorphism via horizontal composition in $\dd$ given $f : d \to d'$ :  
+		Let $\cc \simeq \dd$ and $\dd \simeq \ee$. Then, there exist natural transformations between functors $F : \cc \rightleftarrows \dd : G$ and $H : \dd \rightleftarrows : K$ such that $\epsilon : 1_{\cc} \cong GF$, $\eta : FG \cong 1_{\dd}$ and $\epsilon' : 1_{\dd} \cong KH$, $\eta' : HK \cong 1_{\ee}$. Note that  The compositions $HF : \cc \to \ee$ and $KG : \ee \to \cc$ give yield the following natural isomorphisms: 
 		
-		\begin{center}
-			\begin{tikzcd}
-				HGd \ar[d, "HGf", swap] \ar[r, "\epsilon'_d"] & d \ar[d, "f"] \ar[r, "\eta_d"] & FGd \ar[d, "FGf"] \\
-				HGd' \ar[r, "\epsilon'_{d'}", swap] & d' \ar[r, "\eta_{d'}", swap] & FGd'
-			\end{tikzcd}
-		\end{center}
+\begin{equation*}
+	\begin{aligned}
+		GKHF & \cong G(KH)F \\
+			  & \cong G(1_{\dd})F \\ 
+			  & \cong GF \\
+			  & \cong 1_{\cc}
+	\end{aligned}
+\end{equation*}
 		
-		A similar argument is made to establish the natural isomorphisms for the remaining transformations. It is readily apparent that $\cc \simeq \cc$, since $1_{\cc}$ is naturally isomorphic to itself, and that equivalence is symmetric, since natural isomorphisms are commutative relations. Indeed, the above establishes the transitivity of equivalence, and hence equivalence of categories is an equivalence relation.
+and 
+\begin{equation*}
+	\begin{aligned}
+	HFGK & \cong H(FG)K \\
+			  & \cong H(1_{\dd})K \\
+			  & \cong HK \\
+			  & \cong 1_{\ee}	
+	\end{aligned}
+\end{equation*}
+
+Hence the compositions of functors $F,G,H,K$ yield composite natural isomorphisms between $\alpha: 1_{\cc} \cong GKHF$ and $\beta : HFGK \cong 1_{\ee}$. Hence we have an equivalence of categories $\cc \simeq \ee$.
+
+ It is readily apparent that $\cc \simeq \cc$, since $1_{\cc}$ is naturally isomorphic to itself, and that equivalence is symmetric, since natural isomorphisms are commutative relations. Indeed, the above establishes the transitivity of equivalence, and hence equivalence of categories is an equivalence relation.
 \end{enumerate}
 
 \item (1.5.xi) Show that any category that is equivalent to a locally small category is itself locally small. 
