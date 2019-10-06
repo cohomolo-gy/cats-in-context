@@ -449,4 +449,53 @@ Suppose the above is true for $\cc \to \dd$ with $\dd$ locally small. Recall tha
 
 \end{enumerate}
 
+\section{The Art of the Diagram Chase}
+
+In this section we discussed diagrams as functors $\cat{J} \to \cc$ from a small \textbf{indexing category} $\cat{J}$ to any category $\cc$, and techniques for understanding relations on those diagrams regarding commutativity and uniqueness. We also discussed terminal and initial objects. 
+
+\begin{enumerate}[i]
+	\item Show that any map from a terminal object in a category to an initial one is an isomorphism. An object that is both initial and terminal is called a \textbf{zero} object.
+	\linebreak
+	Consider a terminal object \textbf{1} and initial object \textbf{0} and suppose that there exists a morphism $k : \mathbf{1} \to \mathbf{0}$. Consider the composite diagram for both cases of the question: 
+	
+	\[
+	\begin{aligned}
+		\begin{tikzcd}
+			\mathbf{1} \ar[r, "k"] \ar[rr, "1_{\mathbf{1}}", bend right, swap] & \mathbf{0} \ar[r, "\exists !"] & \mathbf{1}
+		\end{tikzcd}
+		\qquad
+		\begin{tikzcd}
+			\mathbf{0} \ar[r, "\exists !"] \ar[rr, "1_{\mathbf{0}}", bend right, swap] & \mathbf{1} \ar[r, "k"] & \mathbf{0}
+		\end{tikzcd}
+	\end{aligned}
+	\]
+	
+	The data of these two diagrams witnesses an isomorphism between \textbf{0} and \textbf{1} when a map exists from $\mathbf{1} \to \mathbf{0}$. We can also make use of lemma 1.6.16 explicitly.
+
+	\item Show that any two terminal objects in a category are connected by a unique isomorphism.
+	
+	Let \textbf{1} and \textbf{1'} be a pair of terminal objects. By definition, there exist unique morphisms $\mathbf{1} \to \mathbf{1'}$ and $\mathbf{1'} \to \mathbf{1}$. Each of these unique morphisms compose into a unique composite to show that these objects are indeed connected by a unique isomorphism.
+	
+	\item Show that any faithful functor reflects monomorphisms. That is, if $F : \cc \to \dd$ is faithful, prove that if $Ff$ is a monomorphism in $\dd$, then $f$ is a monomorphism in $\cc$. Argue by duality that faithful functors also reflect epimorphisms. Conclude that in any concrete category, any morphism that defines an injection of underlying sets is a monomorphism and any morphism that defines a surjection of underlying sets is an epimorphism.
+	
+	By definition, a functor $F: \cc \to \dd$ if the map $\cc(c, d) \to \dd(Fc, Fd)$ is an injection. Let $Ff :  Fc \to Fd \in \dd$ be a monomorphism. Then, for any parallel $g, h : e \rightrightarrows c $,  the composite $(Ff)(Fg) = (Ff)(Fh) \Rightarrow Fg = Fh$ by monomorphism. $F(fg) = F(fh)$ implies $g = h$ by faithfulness, therefore $f$ must be a monomorphism.
+	
+	Dually, if $Ff$ is an epimorphism, then post-composition by parallel arrows yields that $f$ must be an epimorphism. Lets show the conclusion in group!
+	
+	\item (1.6.vi) Lets do this one in group!
+	
+\end{enumerate} 
+
+\section{2-categories}
+
+In this section, we discuss sizing constraints on functor categories, horizontal and vertical composition, middle-four interchange, and the definition of 2-categories. 
+
+\begin{enumerate}[(i)]
+
+\item Prove that if $\cc$ is small and $\dd$ is locally small, then $\dd^{\cc}$ is locally small by defining a monomorphism from the collection of natural transformations between a fixed pair of functors $F,G: \cc \rightrightarrows \dd$ into a set. (Hint: Think about the function that sends a natural transformation to its collection of components.)
+
+Lets do as the hint instructs: consider the collection of natural transformations between $F$ and $G$. We will construct a mono that sends a transformation to its collection of components. Note that for any transformation $F \Rightarrow G$, the components $\{ \alpha_c : \alpha \in [\cc, \dd]\}$ is a set, since $\dd(Fc, Gc)$ is locally small and the collection of $c \in \cc$ is a set. This defines an injection $f : [\cc, \dd](F, G) \to \cat{Set}$ since if $f\alpha = f\beta$, then they are equal on components and therefore equal as transformations. Hence, this is a monomorphism of sets. This tells us that $[\cc, \dd](F, G)$ is set-valued for arbitrary choices of $F$ and $G$, and hence $\dd^{\cc}$ is locally small. 
+
+\item let's do the rest in group!
+\end{enumerate}
 \end{document}  
