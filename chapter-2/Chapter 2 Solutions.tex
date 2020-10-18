@@ -1,0 +1,142 @@
+\documentclass[10pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{xfrac}
+\usepackage{hyperref}
+\usepackage{unicode-math}
+\usepackage{mathtools}
+
+\newcommand{\cat}[1]{\mathsf{#1}}
+\newcommand{\functor}[3]{#1 : \cat{#2} \to \cat{#3}}
+\newcommand{\functordef}{\functor{F}{C}{D}}
+\newcommand{\cc}{\cat{C}}
+\newcommand{\dd}{\cat{D}}
+\newcommand{\ee}{\cat{E}}
+\newcommand{\ccat}{\cat{Cat}}
+\newcommand{\cset}{\cat{Set}}
+\newcommand{\subcat}[2]{\bm{ \mathsf{#1}}_{\bm{ \mathsf{#2}}}}
+\newcommand{\op}[1]{#1^{\text{op}}}
+\newcommand{\opc}{\op{\cc}}
+\newcommand{\opd}{\op{\dd}}
+\newcommand{\ope}{\op{\ee}}
+\newcommand{\mono}{\rightarrowtail}
+\newcommand{\epi}{\twoheadrightarrow}
+\newcommand{\bg}{\cat{BG}}
+\newcommand{\bgg}{\cat{BG'}}
+\newcommand{\nt}{\Rightarrow}
+\newcommand{\ant}[2]{\alpha : F \nt G} 
+\newcommand{\bnt}[2]{\beta : F \nt G} 
+\newcommand{\anti}[2]{\alpha : F \cong G} 
+\newcommand{\bnti}[2]{\beta : F \cong G} 
+\newcommand{\zero}{\mathbb{0}}
+\newcommand{\one}{\mathbb{1}}
+\newcommand{\two}{\mathbb{2}}
+\newcommand{\three}{\mathbb{3}}
+%SetFonts
+
+%SetFonts
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{problem}[theorem]{problem}
+%SetFonts
+
+\title{Categories in Context - Ch. 2 Solutions}
+
+\author{Emily Pillmore}
+
+\begin{document}
+\maketitle
+
+\section{Representable Functors}
+
+\begin{problem} (2.1.i) For each of the three functors
+
+\begin{center}
+\begin{tikzcd}
+\one \ar[r, "0", yshift=1.1ex] \ar[r, "1", yshift=-1.1ex, swap] & \two \ar[l, "!" description]
+\end{tikzcd}
+\end{center}
+
+Between the categories $\one$ and $\two$ describe the corresponding natural transformations between the covariant functors $\ccat \rightrightarrows \two$ represented by the categories by the categories $\one$ and $\two$.
+\end{problem}
+
+\begin{proof}[proof (2.1.i)]
+
+Consider the covariant represented functors $\ccat(\one, -), \ccat(\two,-) : \ccat \to \cset$ and let $F : \cc \to \dd$. Consider the following diagram for the components of the transformations: 
+
+\begin{center}
+	\begin{tikzcd}
+		\ccat(\one, \cc) 	\arrow[yshift=1.2ex]{rr}{\ccat(0,\cc)} \arrow[yshift=-1.2ex, swap]{rr}{\ccat(1,\cc)}  \arrow[swap]{dd}{\ccat(\one, F)}
+			& & \ccat(\two,\cc) \arrow{dd}{\ccat(\two, F)} \arrow{ll}[description]{\ccat(!, \cc)} \\ \\
+		\ccat(\one, \dd) \arrow[yshift=1.2ex]{rr}{\ccat(0,\dd)}  \arrow[yshift=-1.2ex, swap]{rr}{\ccat(1,\dd)}
+			& & \ccat(\two, \dd) \arrow{ll}[description]{\ccat(!, \dd)}
+	\end{tikzcd}
+\end{center}
+
+The transformations may be described as follows:
+
+\begin{itemize}
+	\item $\ccat(0,-)$ maps $*$ to the $0$ object of $\two$, and given any functor $F : \two \to \cc$, will map the domain of the unique nontrivial arrow $f : 0 \to 1$ in $\two$ to the domain of the arrow $Ff : F0 \to F1$. 
+	\item Likewise,, for $\ccat(1,-)$, given any functor, the transformation will choose a codomain for the unique arrow in $\two$, and given any functor $ F : \two \to \cc$, will correspond to the codomain object of the chosen arrow in $\cc$.
+	\item The transformation $\ccat(!, -)$ takes any choice of arrow in $\two \to \cc$ and maps it to an object of $\cc$. 
+\end{itemize}
+\end{proof}
+
+\begin{problem}{(2.1.ii)}Prove that if $F : \cc \to \cset$ is representable, then $F$ preserves monomorphisms, i.e., sends every monomorphism in $\cc$ to an injective function. Use the contrapositive to find a covariant set-valued functor defined on your favorite concrete category which is not representable. 
+\end{problem}
+
+\begin{proof}
+ 
+ Let $F : \cc \to \cset$ be a representable functor with representing object $c \in \cc$, and let $f : x \mono y$ be a monomorphism in $\cc$. Consider the set function $Ff : Fx \to Fy$. Since $F$ is representable it is naturally isomorphic to $\cc(c, -)$, and $Ff$ is then isomorphic to a set function $\cc(c,f) : \cc(c, x) \to \cc(c, y)$. Consider the parallel morphisms $h, k : w \rightrightarrows x$. Since $f$ is monic, we have that $fh = fk$ implies that $h = k$. Hence, $\cc(c, fh) = \cc(c, fk)$ implies that  $\cc(c, k) = \cc(c, h)$. Let $w, w'\in \cc(c, x)$. Then, we recover the usual statement for set injection: for any two $w, w'$, $f1_w = f1_{w'}$ implies that $1_w = 1_{w'}$, and therefore $w = w'$. Hence, we recover the usual notion of injective function in set: $f w = f w' \Rightarrow w = w'$. Therefore representable functors preserve monomorphisms.
+ 
+ For the contrapositive, let the functor $\pi_0 : \cat{Top} \to \cset$ be the functor taking a topological space to its set of connected components. Then the monomorphism $\{0, 1\} \to $ [$0,1$] is mapped to $\{*\}$.
+\end{proof}
+
+\begin{problem} (2.1.iii) Suppose $F: \cc \to \cset$ is equivalent to $G: \dd \to \cset$ in the sense that there is an equivalence of categories $H: \cc \to \dd$ so that $GH$ and $F$ are naturally isomorphic. 
+
+\begin{enumerate}[(i)]
+	\item If $G$ is representable, then is $F$ representable?
+	\item If $F$ is representable, then is $G$ representable?
+\end{enumerate}
+\end{problem}
+
+\begin{proof}
+Let $G$ be representable and let $K : D \to C$ be the inverse equivalence to $H$. Note now that we have the following: 
+	
+\begin{center}
+\begin{equation}
+	\begin{aligned}
+		F &\cong GH \\
+		 &\cong \dd(d, -)H & \text{(representability of $G$)} \\
+		 &\cong \dd(d, H-)  \\ 
+		 &\cong \dd(HKd, H-) & \text{(equivalence $HK \cong 1_\dd$)} \\
+		 &\cong \cc(Kd, -) & \text{(H is f.f. due to equivalence)} \\
+		 &\cong \cc(c, -) & \text{(K is e.s.o due to equivalence)}
+	\end{aligned}
+\end{equation}
+\end{center}
+
+Hence, $F$ is representable. Verbatim proof for the opposite direction.
+\end{proof}
+	
+\begin{problem} (2.1.iv) A functor $F$ defines a \textbf{subfunctor} of $G$ if there is a natural transformation $\alpha: F \nt G$ whose components are monomorphisms. In the case of $G: \opc \to \cset$, a subfunctor is given by a collection of subsets $Fc \subset Gc$ so that each $Gf : Gc \to Gc'$ restricts to a function $Ff : Fc \to Fc'$. Characterize those subsets that assemble into a subfunctor of the representable functor $\cc(-, c)$.
+
+\end{problem}
+
+\begin{proof}
+
+For the functor $F$ to be a subfunctor of $\cc(-, c)$, we must build a natural transformation $\alpha : F \nt \cc(-, c)$ such that, given $f : d' \to d \in \cc$,  the components $\alpha_d : Fd \to \cc(d, c)$ restrict $Fd$ and widen $Fd'$ when precomposed with $f$. Thus, to completely characterize the subsets of a subfunctor, we need that the family $\bigcup_d Fd$ is closed precomposition by arbitrary morphisms $d' \to d$ so that we have a sieve on $d$.
+\end{proof} 
+\end{document}
