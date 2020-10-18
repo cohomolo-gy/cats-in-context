@@ -139,4 +139,14 @@ Hence, $F$ is representable. Verbatim proof for the opposite direction.
 
 For the functor $F$ to be a subfunctor of $\cc(-, c)$, we must build a natural transformation $\alpha : F \nt \cc(-, c)$ such that, given $f : d' \to d \in \cc$,  the components $\alpha_d : Fd \to \cc(d, c)$ restrict to $Fd$ and widen to $Fd'$ when precomposed with $f$. Thus, to completely characterize the subsets of a subfunctor, we need that the family $\bigcup_d Fd$ is closed under precomposition by arbitrary morphisms $d' \to d$ so that we have a sieve on $d$.
 \end{proof} 
+
+\begin{problem} (2.1.v) The functor of Example 2.1.5(xi) that sends a category to its collection of isomorphisms is a subfunctor of the functor of example 2.1.5(x) that sends a category to its collection of morphisms. Define a functor between the representing categories $\mathbb{I}$ and $\two$ that induces the corresponding monic natural transformation between these representable functors. 
+
+\end{problem}
+
+\begin{proof}
+
+Define the functor $F : \mathbb{I} \to \two$ as follows: let $F$ be the identity on objects, but for $f : 0 \to 1$, $g : 1 \to 0$, let them both map to the unique arrow in $\two$. Then, the components $\alpha_\cc : \ccat(\cc, \mathbb{I}) \to \ccat(\cc, \two)$ may be identified with $\ccat(\cc, F)$, which is an injection of sets, picking out two elements of $\ccat(\cc, \two)$ for each non-trivial arrow in $\mathbb{I}$. 
+
+\end{proof}
 \end{document}
