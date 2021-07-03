@@ -1,0 +1,353 @@
+\documentclass[10pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{xfrac}
+\usepackage{hyperref}
+\usepackage{unicode-math}
+\usepackage{mathtools}
+
+\newcommand{\cat}[1]{\mathsf{#1}}
+\newcommand{\functor}[3]{#1 : \cat{#2} \to \cat{#3}}
+\newcommand{\functordef}{\functor{F}{C}{D}}
+\newcommand{\cc}{\cat{C}}
+\newcommand{\dd}{\cat{D}}
+\newcommand{\ee}{\cat{E}}
+\newcommand{\ccat}{\cat{Cat}}
+\newcommand{\cset}{\cat{Set}}
+\newcommand{\subcat}[2]{\bm{ \mathsf{#1}}_{\bm{ \mathsf{#2}}}}
+\newcommand{\op}[1]{#1^{\text{op}}}
+\newcommand{\opc}{\op{\cc}}
+\newcommand{\opd}{\op{\dd}}
+\newcommand{\ope}{\op{\ee}}
+\newcommand{\mono}{\rightarrowtail}
+\newcommand{\epi}{\twoheadrightarrow}
+\newcommand{\bg}{\cat{BG}}
+\newcommand{\bgg}{\cat{BG'}}
+\newcommand{\nt}{\Rightarrow}
+\newcommand{\ant}[2]{\alpha : F \nt G} 
+\newcommand{\bnt}[2]{\beta : F \nt G} 
+\newcommand{\anti}[2]{\alpha : F \cong G} 
+\newcommand{\bnti}[2]{\beta : F \cong G} 
+\newcommand{\zero}{\mathbb{0}}
+\newcommand{\one}{\mathbb{1}}
+\newcommand{\two}{\mathbb{2}}
+\newcommand{\three}{\mathbb{3}}
+\newcommand{\at}{\alpha}
+\newcommand{\bt}{\beta}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{problem}[theorem]{problem}
+\newtheorem{definition}[theorem]{Definition}
+
+\title{Categories in Context - Ch. 1.7 Notes}
+
+\author{Emily Pillmore}
+
+\begin{document}
+\maketitle
+
+\section{Functor Categories}
+
+In this section, we begin to build the intuition for working in "higher dimensions" of categories, noting some very interesting properties of natural transformations, functors, and introducing one of the most important building blocks in category theory: the functor category. 
+
+\begin{definition}[Functor category]
+
+For any pair of categories, there is an associated category $\dd^{\cc}$, whose data is as follows: 
+
+\begin{itemize}
+	\item Objects are functors $F : \cc \to \dd$
+	\item Morphisms are natural transformations $\alpha : \cc \nt \dd$
+	\item The identity transformation for a functor $F$ is denoted $1_F : F \nt F$, whose components are defined to be $(1_F)_c := 1_{Fc}$. 
+	\item Along with component-wise "vertical" composition of transformations (see next lemma.).
+\end{itemize}
+\end{definition}
+
+Composition of natural transformations may occur in more than one way, hence the distinction made above. In fact, it is this "multi-dimensional" character of their composition that belies the choice in terminology of "n-category": in a two category, the "2-morphisms" may be composed in 2 ways. 
+
+\begin{lemma}(vertical composition)
+	Suppose $\alpha : F \nt G$ and $\beta : G \nt H$ are natural transformations between the functors $F,G,H : \cc \to \dd$. Then there is a natural transformation, syntactically denoted $\beta \alpha$ or $\beta \cdot \alpha : F \nt H$, whose components are defined as follows: 
+	
+\begin{center}
+	\begin{equation}
+		(\beta \cdot \alpha)_c := \beta_c \cdot \alpha_c
+	\end{equation}
+\end{center}
+\end{lemma}
+
+\begin{proof}
+The naturality of $\at$ and $\bt$ implies that for any $f : c \to d$, then the following composite rectangle commutes: 
+
+\begin{center}
+	\begin{tikzcd}
+		Fc \ar[r,"\at_c"] \ar[d, "Ff", swap] & Gc \ar [r, "\bt_c"] \ar[d, "Gf"] & Hc \ar[d, "Hf"] \\
+		Fd \ar[r, "\at_d", swap] & Gd \ar[r, "\bt_d", swap] & Hd
+	
+	\end{tikzcd}
+\end{center}
+
+It is necessary and sufficient to check that associativity and unitality of components, and this follows immediately from composition in $\dd$.
+\end{proof}
+
+The name "vertical composition" is suggestive: why vertical? Component-wise composition would certainly lend itself more to being called "horizontal". However, we must keep the big picture in mind. Here is the mnemonic you can use to determine which is which in your head: 
+
+\begin{itemize}
+	\item Drawing functors horizontally, a "vertically composable" pair of natural transformations fits into what we call a \textit{pasting diagram}: 
+	    \begin{center}
+			\begin{tikzcd}
+				\cc 
+				  \ar[r, bend left = 60, "F", ""{name=F, below}]
+				  \ar[r, "G" description, ""{name=G}]
+				  \ar[r, bend right = 60, "H", ""{name=H,below}, swap]
+			  & \dd 
+			  	  \ar[Rightarrow, from=F, to=G, "\at"]
+			  	  \ar[Rightarrow, from=G, to=H, "\bt", shorten=1.5mm]
+			\end{tikzcd} = \begin{tikzcd}
+				\cc 
+				  \ar[r, bend left = 60, "F", ""{name=F, below}]
+				  \ar[r, bend right = 60, "H", ""{name=H,below}, swap]
+			  & \dd 
+			  	  \ar[Rightarrow, shorten=3mm, from=F, to=H, "\bt \cdot \at", shift right=2]
+			\end{tikzcd}
+			
+		
+		\end{center}
+		
+	\item As the terminology suggests, there is a \textbf{horizontal composition}, which composes horizontally along pasting diagrams as defined above: 
+	
+		\begin{center}
+			\begin{tikzcd}
+				\cc 
+				  \ar[r, bend left = 60, "F", ""{name=F, below}]
+				  \ar[r, bend right = 60, "G", ""{name=G,below}, swap]
+			  & \dd
+				  \ar[r, bend left = 60, "H", ""{name=H, below}]
+				  \ar[r, bend right = 60, "K", ""{name=K,below}, swap]     
+			  	  \ar[Rightarrow, shorten=3mm, from=F, to=G, " \at", shift right]
+			  & \ee 
+			  	  \ar[Rightarrow, shorten=3mm, from=H, to=K, " \bt", shift right]
+			  	   
+			\end{tikzcd} = \begin{tikzcd}
+				\cc 
+				  \ar[r, bend left = 60, "HF", ""{name=HF, below}]
+				  \ar[r, bend right = 60, "KG", ""{name=KG,below}, swap]
+			  & \ee
+			  	  \ar[Rightarrow, shorten=3mm, from=HF, to=KG, " \bt * \at", shift right=2]
+			\end{tikzcd}
+			
+		
+		\end{center}	
+\end{itemize}
+
+Let's prove the lemma asserted above that this indeed defines a valid composition of transformations. 
+
+\begin{lemma}(horizontal composition)
+
+Given a pair of natural transformations $\at : F \nt G$ and $\bt : H \nt K$, then there is a natural transformation $\bt * \at : HF \nt KG$ whose component at $c \in \cc$ is defined as the composite of the following square: 
+
+\begin{center}
+	\begin{tikzcd}
+		HFc \ar[r, "\beta_{Fc}"] \ar[d, "H\alpha_c", swap] \ar[dr, dashed, "(\bt * \at)_c " description] & KFc \ar[d, "K\alpha_c"] \\
+		HGc \ar[r, "\beta_{Gc}", swap] & KGc
+	\end{tikzcd}
+\end{center}
+\end{lemma}
+
+\begin{proof}
+	The square defined above commutes by naturality of $\bt$ applied to the component $\alpha_c$. To prove that the components of $\bt * \at$ are natural, we must show that, given $f: c \to d$ in $\cc$, the following naturality condition holds: 
+
+\begin{equation}
+  KGf \cdot (\bt * \at)_c = (\bt * \at)_d \cdot HFf
+\end{equation}
+
+This relation can be summarized in the following diagram, and is sufficient as a proof: 
+
+\begin{center}
+	\begin{tikzcd}
+		HFc 
+		  \ar[r,"H\at_c"] 
+		  \ar[d, "HFf", swap] & 
+		HGc 
+		  \ar [r, "\bt_{Gc}"] 
+		  \ar[d, "HGf"] & 
+		KGc 
+		  \ar[d, "KGf"] \\
+		HFd 
+		  \ar[r, "H\at_d", swap] & 
+		HGd 
+		  \ar[r, "\bt_{Gd}", swap] & 
+		KGd
+	\end{tikzcd}
+\end{center}
+\end{proof}
+
+\subsection{Whiskering}
+
+There are some typing issues that need to be addressed in order to justify the syntax $L\bt F : LHF \nt LKF$ as seen in the book. In particular, the juxtaposition of $L$ with $\bt$, and $\bt$ with $F$ would imply that one is "applying" $L$ to $\bt$ and $\bt$ to $F$ to produce a transformation. This is not the case. In fact there is a subtle conversion being done under the hood. In the case of $L \bt$, we must veiw this in terms of the application of $L$ to components $\bt_{Hc} \in \ee$, such that $L\bt_{Hc} \in E$, and $\bt F$ in terms of the application of components to $F$ as it is applied to an object $\bt_{Fc}(Fc) \in \dd$ for a given object $c \in \cc$ (parens have been added for clarity). We shorthand this threading of information using the syntax $L\bt F$, and capture it in a diagram: 
+
+\begin{center}
+    \begin{tikzcd}
+			\cc 
+			  \ar[r, "F"] & 
+			\dd 
+			  \ar[r, "H", ""{name=H}, bend left = 60]
+			  \ar[r, "K", ""{name=K}, swap, bend right = 60] &
+			\ee
+			  \ar[Rightarrow, from=H, to=K, "\bt", shorten=2.5mm] 
+			  \ar[r, "L"] & 
+			\cat{F} 
+		\end{tikzcd}
+\end{center} 
+
+\begin{lemma}(middle four interchange)
+
+Given functors and natural transformations 
+
+	    \begin{center}
+			\begin{tikzcd}
+				\cc 
+				  \ar[r, bend left = 60, "F", ""{name=F, below}]
+				  \ar[r, "G" description, ""{name=G}]
+				  \ar[r, bend right = 60, "H", ""{name=H,below}, swap]
+			  & \dd 
+			  	  \ar[Rightarrow, from=F, to=G, "\at"]
+			  	  \ar[Rightarrow, from=G, to=H, "\bt", shorten=1.5mm]
+			  	  \ar[r, bend left = 60, "J", ""{name=J, below}]
+			  	  \ar[r, "K" description, ""{name=K}]
+			  	  \ar[r, bend right = 60, "L", ""{name=L, below}, swap]
+			  & \ee 
+			  	  \ar[Rightarrow, from=J, to=K, "\gamma"]
+			  	  \ar[Rightarrow, from=K, to=L, "\delta", shorten=1.5mm] 
+			\end{tikzcd}
+			
+		
+		\end{center}
+		
+The transformations $JF \nt LH$ defined by first composing vertically and then composing horizontally equals the natural transformation defined by first composing horizontally, and then composing vertically: 
+
+\begin{center}
+			\begin{tikzcd}
+				\cc 
+				  \ar[r, bend left = 60, "F", ""{name=F, below}]
+				  \ar[r, bend right = 60, "H", ""{name=H,below}, swap]
+			  & \dd 
+			  	  \ar[Rightarrow, from=F, to=H, "\bt \cdot \at", shorten=2.5mm]
+			  	  \ar[r, bend left = 60, "J", ""{name=J, below}]
+			  	  \ar[r, bend right = 60, "L", ""{name=L, below}, swap]
+			  & \ee 
+			  	  \ar[Rightarrow, from=J, to=L, "\delta \cdot \gamma", shorten=2.5mm]
+			\end{tikzcd} = \begin{tikzcd}
+							\cc 
+					\ar[rrr, bend left = 40, "JF", ""{name=JF, below}]
+					\ar[rrr, "KG" description, ""{name=KG, below}]
+					\ar[rrr, bend right = 40, "LH", ""{name=LH}, swap]
+			& & & \ee 
+			        \ar[Rightarrow, from=JF, to=KG, "\gamma * \alpha", shorten=1mm]
+					\ar[Rightarrow, from=KG, to=LH, "\delta * \beta", shorten=1mm]
+			\end{tikzcd}
+			
+\end{center}
+\end{lemma}
+
+\begin{proof}(exercise 1.7.iv)
+	We can show that the above lemma is true by showing that the following equality holds: 
+
+\begin{equation}
+	(\delta \cdot \gamma) * (\bt \cdot \at) = (\delta * \bt) \cdot (\gamma * \at)
+\end{equation}
+
+For natural transformations, equality is defined by equality of components. That is to say $\at = \bt$ if and only if $\at_c = \bt_c$ for all $c \in \cc$. It suffices to show in this case, that the components yield precisely the same data for each side of the equality. Let $f : c \to d$ and behold my glory: 
+
+\begin{center}
+	\begin{tikzcd}
+	
+	&& JHc && KHc && LHc \\
+	& JGc && KGc && LGc \\
+	JFc && KFc && LFc && LHd \\
+	& JGd && KGd && LGd \\
+	JFd && KFd && LFd
+	\arrow["JFf"', from=3-1, to=5-1]
+	\arrow["{J\alpha_c}", from=3-1, to=2-2]
+	\arrow["{\gamma_{Gc}}", from=2-2, to=2-4]
+	\arrow["{\delta_{Gc}}", from=2-4, to=2-6]
+	\arrow[from=3-5, to=2-6]
+	\arrow["{J\alpha_d}", from=5-1, to=4-2]
+	\arrow[from=2-2, to=4-2]
+	\arrow["{\gamma_{Fd}}"', from=5-1, to=5-3]
+	\arrow["{\delta_{Fd}}"', from=5-3, to=5-5]
+	\arrow["{\gamma_{Fc}}", from=3-1, to=3-3]
+	\arrow["{\delta_{Fc}}", from=3-3, to=3-5]
+	\arrow["{\gamma_{Gd}}", from=4-2, to=4-4, shift left=2]
+	\arrow[from=2-4, to=4-4]
+	\arrow["KFf", from=3-3, to=5-3]
+	\arrow["LFf", from=3-5, to=5-5]
+	\arrow["{L\alpha_d}"', from=5-5, to=4-6]
+	\arrow["LGf", from=2-6, to=4-6]
+	\arrow["{\delta_{Gd}}", from=4-4, to=4-6, shift left=2]
+	\arrow[from=3-3, to=2-4]
+	\arrow["{(\gamma * \alpha)}"{description}, dotted, from=3-1, to=2-4]
+	\arrow["{(\delta * \alpha)}"{description}, dotted, from=3-3, to=2-6]
+	\arrow[from=5-3, to=4-4]
+	\arrow["{J\beta_c}", from=2-2, to=1-3]
+	\arrow[from=2-4, to=1-5]
+	\arrow[from=2-6, to=1-7]
+	\arrow["{\gamma_{Hc}}", from=1-3, to=1-5]
+	\arrow["{\delta_{Hc}}", from=1-5, to=1-7]
+	\arrow["{(\gamma * \beta)}"{description}, dotted, from=2-2, to=1-5]
+	\arrow["{(\delta * \beta)}"{description}, dotted, from=2-4, to=1-7]
+	\arrow["LHf"{description}, from=1-7, to=3-7]
+	\arrow["{L\beta_d}"', from=4-6, to=3-7]
+			 
+	\end{tikzcd}
+\end{center}
+
+Note that every individual cube is a commutative cube, and all faces are commutative as well. Therefore the requisite paths through the cube are equal by naturality of their component shapes, and therefore
+
+\begin{equation}
+	(\delta \cdot \gamma) * (\bt \cdot \at) = (\delta * \bt) \cdot (\gamma * \at)
+\end{equation}
+
+
+\end{proof}
+
+\subsection{2-categories}
+
+\begin{definition}(2-category)
+	A \textbf{2-category} is comprised of the following data: 
+	
+\begin{itemize}
+	\item Objects, e.g. categories $\cc$
+	\item 1-morphisms between objects (e.g. functors $F: \cc \to \dd$)
+	\item 2-morphisms between parallel 1-morphisms (e.g. natural transformations). 
+\end{itemize}
+
+Such that
+
+\begin{itemize}
+	\item The objects and 1-morphisms form a category. Identities are 1-morphisms. 
+	\item For each pair of objects $\cc, \dd$, the 1-morphisms and 2-morphisms form a category under vertical composition, with identities defined by the diagram 
+	\begin{center}
+	\begin{tikzcd}
+		\cc \ar[r, "F", ""{name=F1}, bend left=40]
+			\ar[r, "F", ""{name=F2}, swap, bend right=40] 
+	  & \dd \ar[Rightarrow, from=F1,to=F2, "1_F",shorten=2mm ]
+	\end{tikzcd}
+	\end{center}
+	\item There is also a category whose objects are the objects which a morphisms $\cc \to \dd$ is a "2-cell", which composes under the operation "horizontal composition". 
+	\item The law of middle four interchange holds
+\end{itemize}
+\end{definition}
+\subsection{Size Matters}
+
+Caution is needed when talking about sizing with respect to functor categories. If $\cc$ and $\dd$ are small, then $\dd^\cc$ is small. However, if both are only locally small, then $\dd^\cc$ need not be (why? Discuss in the meetup - exercise 1.7.i). 
+\end{document}

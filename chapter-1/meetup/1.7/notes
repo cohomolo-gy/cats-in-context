@@ -1,0 +1,190 @@
+\documentclass[10pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{xfrac}
+\usepackage{hyperref}
+\usepackage{unicode-math}
+\usepackage{mathtools}
+
+\newcommand{\cat}[1]{\mathsf{#1}}
+\newcommand{\functor}[3]{#1 : \cat{#2} \to \cat{#3}}
+\newcommand{\functordef}{\functor{F}{C}{D}}
+\newcommand{\cc}{\cat{C}}
+\newcommand{\dd}{\cat{D}}
+\newcommand{\ee}{\cat{E}}
+\newcommand{\ccat}{\cat{Cat}}
+\newcommand{\cset}{\cat{Set}}
+\newcommand{\subcat}[2]{\bm{ \mathsf{#1}}_{\bm{ \mathsf{#2}}}}
+\newcommand{\op}[1]{#1^{\text{op}}}
+\newcommand{\opc}{\op{\cc}}
+\newcommand{\opd}{\op{\dd}}
+\newcommand{\ope}{\op{\ee}}
+\newcommand{\mono}{\rightarrowtail}
+\newcommand{\epi}{\twoheadrightarrow}
+\newcommand{\bg}{\cat{BG}}
+\newcommand{\bgg}{\cat{BG'}}
+\newcommand{\nt}{\Rightarrow}
+\newcommand{\ant}[2]{\alpha : F \nt G} 
+\newcommand{\bnt}[2]{\beta : F \nt G} 
+\newcommand{\anti}[2]{\alpha : F \cong G} 
+\newcommand{\bnti}[2]{\beta : F \cong G} 
+\newcommand{\zero}{\mathbb{0}}
+\newcommand{\one}{\mathbb{1}}
+\newcommand{\two}{\mathbb{2}}
+\newcommand{\three}{\mathbb{3}}
+%SetFonts
+
+%SetFonts
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{problem}[theorem]{problem}
+%SetFonts
+
+\title{Categories in Context - Ch. 2 Solutions}
+
+\author{Emily Pillmore}
+
+\begin{document}
+\maketitle
+
+\section{Representable Functors}
+
+\begin{problem} (2.1.i) For each of the three functors
+
+\begin{center}
+\begin{tikzcd}
+\one \ar[r, "0", yshift=1.1ex] \ar[r, "1", yshift=-1.1ex, swap] & \two \ar[l, "!" description]
+\end{tikzcd}
+\end{center}
+
+Between the categories $\one$ and $\two$ describe the corresponding natural transformations between the covariant functors $\ccat \rightrightarrows \two$ represented by the categories by the categories $\one$ and $\two$.
+\end{problem}
+
+\begin{proof}[proof (2.1.i)]\documentclass[10pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{xfrac}
+\usepackage{hyperref}
+\usepackage{unicode-math}
+\usepackage{mathtools}
+
+\newcommand{\cat}[1]{\mathsf{#1}}
+\newcommand{\functor}[3]{#1 : \cat{#2} \to \cat{#3}}
+\newcommand{\functordef}{\functor{F}{C}{D}}
+\newcommand{\cc}{\cat{C}}
+\newcommand{\dd}{\cat{D}}
+\newcommand{\ee}{\cat{E}}
+\newcommand{\ccat}{\cat{Cat}}
+\newcommand{\cset}{\cat{Set}}
+\newcommand{\subcat}[2]{\bm{ \mathsf{#1}}_{\bm{ \mathsf{#2}}}}
+\newcommand{\op}[1]{#1^{\text{op}}}
+\newcommand{\opc}{\op{\cc}}
+\newcommand{\opd}{\op{\dd}}
+\newcommand{\ope}{\op{\ee}}
+\newcommand{\mono}{\rightarrowtail}
+\newcommand{\epi}{\twoheadrightarrow}
+\newcommand{\bg}{\cat{BG}}
+\newcommand{\bgg}{\cat{BG'}}
+\newcommand{\nt}{\Rightarrow}
+\newcommand{\ant}[2]{\alpha : F \nt G} 
+\newcommand{\bnt}[2]{\beta : F \nt G} 
+\newcommand{\anti}[2]{\alpha : F \cong G} 
+\newcommand{\bnti}[2]{\beta : F \cong G} 
+\newcommand{\zero}{\mathbb{0}}
+\newcommand{\one}{\mathbb{1}}
+\newcommand{\two}{\mathbb{2}}
+\newcommand{\three}{\mathbb{3}}
+%SetFonts
+
+%SetFonts
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{problem}[theorem]{problem}
+%SetFonts
+
+\title{Categories in Context - Ch. 2 Solutions}
+
+\author{Emily Pillmore}
+
+\begin{document}
+\maketitle
+
+\section{Representable Functors}
+
+\begin{problem} (2.1.i) For each of the three functors
+
+\begin{center}
+\begin{tikzcd}
+\one \ar[r, "0", yshift=1.1ex] \ar[r, "1", yshift=-1.1ex, swap] & \two \ar[l, "!" description]
+\end{tikzcd}
+\end{center}
+
+Between the categories $\one$ and $\two$ describe the corresponding natural transformations between the covariant functors $\ccat \rightrightarrows \two$ represented by the categories by the categories $\one$ and $\two$.
+\end{problem}
+
+\begin{proof}[proof (2.1.i)]}[2]{\alpha : F \nt G} 
+\newcommand{\bnt}[2]{\beta : F \nt G} 
+\newcommand{\anti}[2]{\alpha : F \cong G} 
+\newcommand{\bnti}[2]{\beta : F \cong G} 
+\newcommand{\zero}{\mathbb{0}}
+\newcommand{\one}{\mathbb{1}}
+\newcommand{\two}{\mathbb{2}}
+\newcommand{\three}{\mathbb{3}}
+%SetFonts
+
+%SetFonts
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{problem}[theorem]{problem}
+%SetFonts
+
+\title{Categories in Context - Ch. 2 Solutions}
+
+\author{Emily Pillmore}
+
+\begin{document}
+\maketitle
+
+\section{Representable Functors}
+
+\begin{problem} (2.1.i) For each of the three functors
+
+\begin{center}
+\begin{tikzcd}
+\one \ar[r, "0", yshift=1.1ex] \ar[r, "1", yshift=-1.1ex, swap] & \two \ar[l, "!" description]
+\end{tikzcd}
+\end{center}
+
+Between the categories $\one$ and $\two$ describe the corresponding natural transformations between the covariant functors $\ccat \rightrightarrows \two$ represented by the categories by the categories $\one$ and $\two$.
+\end{problem}
+
+\begin{proof}[proof (2.1.i)]
+
+\end{proof}
+
+\end{document}
